@@ -28,14 +28,14 @@ public class StockBoxManager {
     private void createStockBoxes(CanvasWindow canvas) {
         double margin = canvas.getWidth() * 0.05;
         double spacing = canvas.getWidth() * 0.01;
-        double y = canvas.getWidth() * 0.15;
+        double y = canvas.getWidth() * 0.60;
         double x = margin;
         double length = 0;
-        for (int i = 0; i < 20; i++) {
-            StockBox brick = new StockBox(x, y, canvas.getWidth() * 0.1,
-                    canvas.getWidth() * 0.03);
+        for (int i = 0; i < 54; i++) {
+            StockBox brick = new StockBox(x, y, canvas.getWidth() * 0.05,
+                    canvas.getWidth() * 0.05);
             length = length + brick.getWidth() + spacing;
-            if (length < canvas.getWidth() - 4 * margin) {
+            if (length < canvas.getWidth() - 8 * margin) {
                 x = x + brick.getWidth() + spacing;
             } else {
                 x = margin;
