@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="127-shared" />
+    <orderEntry type="module" module-name="StocksTracker" />
   </component>
 </module>
