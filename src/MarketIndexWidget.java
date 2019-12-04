@@ -27,7 +27,6 @@ public class MarketIndexWidget implements StockWidget {
     private GraphicsText marketCap;
 
 
-
     public MarketIndexWidget(double size) {
         this.size = size;
 
@@ -77,7 +76,6 @@ public class MarketIndexWidget implements StockWidget {
 
     }
 
-
     @Override
     public GraphicsObject getGraphics() {
         return group;
@@ -103,20 +101,55 @@ public class MarketIndexWidget implements StockWidget {
         name.setCenter(size * 0.45, size * 0.4);
         ticker.setCenter(size * 0.55, size * 0.4);
 
-        currPrice.setCenter(size*0.5,size*0.45);
+        currPrice.setCenter(size * 0.5, size * 0.45);
 
-        dayHigh.setCenter(size*0.45, size*0.5);
-        openPrice.setCenter(size*0.50, size*0.5);
-        dayLow.setCenter(size*0.55, size*0.5);
+        dayHigh.setCenter(size * 0.45, size * 0.5);
+        openPrice.setCenter(size * 0.50, size * 0.5);
+        dayLow.setCenter(size * 0.55, size * 0.5);
 
-        peRatio.setCenter(size*0.4, size*0.55);
-        eps.setCenter(size*0.45, size*0.55);
-        divYield.setCenter(size*0.5, size*0.55);
-        marketCap.setCenter(size*0.55, size*0.55);
+        peRatio.setCenter(size * 0.4, size * 0.55);
+        eps.setCenter(size * 0.45, size * 0.55);
+        divYield.setCenter(size * 0.5, size * 0.55);
+        marketCap.setCenter(size * 0.55, size * 0.55);
     }
 
-    @Override
-    public void onHover(Point position) {
-
+    private StockBox getBoxAt(Point location) {
+        GraphicsObject obj = group.getElementAt(location);
+        if (obj instanceof StockBox) {
+            return (StockBox) obj;
+        }
+        return null;
     }
-}
+
+    private void selectForecast(StockBox box) {
+        // TODO: Call setActive() for all the forecast boxes, with true for the selected box and
+        //       false for all the others (so that the previously active one becomes inactive).
+        // TODO: Get the forecast data from the box, and use it to update the text and icon.
+        for (StockBox box1 : boxes) {
+            if (box1 == box) {
+                box1.setActive(true);
+            } else {
+                box1.setActive(false);
+            }
+        }
+    }
+//        ForecastConditions forecast = box.getForecast();
+//        label.setText(FormattingHelpers.makeOneDecimal(forecast.getTemperature()) + "\u2109");
+//        description.setText(forecast.getWeatherDescription());
+//        icon.setImagePath(forecast.getWeatherIcon());
+//        minTemp.setText(FormattingHelpers.makeOneDecimal(forecast.getMinTemperature()) +
+//                "\u2109" + " |");
+//        maxTemp.setText(FormattingHelpers.makeOneDecimal(forecast.getMaxTemperature()) + "\u2109");
+//        time.setText(FormattingHelpers.getTime(forecast.getPredictionTime()));
+//        date.setText(FormattingHelpers.getDate(forecast.getPredictionTime()));
+//        updateLayout();
+
+        @Override
+        public void onHover (Point position){
+            StockBox aBox = getBoxAt(position);
+            if (aBox == null) {
+                return;
+        }
+            selectForecast(aBox);
+        }
+    }

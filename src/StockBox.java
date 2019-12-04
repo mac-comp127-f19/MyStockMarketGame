@@ -24,5 +24,11 @@ public class StockBox extends Rectangle {
         this.centerY = centerY;
     }
 
+    public void setActive(boolean active) {
+        setFillColor(active
+                ? new Color(0x3ba634)
+                : new Color(0xD9D9D9));
+    }
+
 }
 
