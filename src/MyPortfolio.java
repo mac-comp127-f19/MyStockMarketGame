@@ -65,9 +65,7 @@ public class MyPortfolio implements StockWidget{
     private void updateLayout() {
         date.setCenter(size * 0.45, size * 0.1);
         netWorth.setCenter(size * 0.55, size * 0.4);
-
         stockName.setCenter(size * 0.5, size * 0.45);
-
        sharesOwned.setCenter(size * 0.45, size * 0.5);
          profit.setCenter(size * 0.50, size * 0.5);
         loss.setCenter(size * 0.55, size * 0.5);
