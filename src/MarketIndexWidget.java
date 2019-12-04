@@ -42,7 +42,7 @@ public class MarketIndexWidget implements StockWidget {
         group.add(ticker);
 
         currPrice = new GraphicsText();
-        currPrice.setFont(FontStyle.PLAIN, size * 0.1);
+        currPrice.setFont(FontStyle.PLAIN, size * 0.12);
         group.add(currPrice);
 
         dayHigh = new GraphicsText();
@@ -88,22 +88,31 @@ public class MarketIndexWidget implements StockWidget {
         name.setText(stock.getName());
         ticker.setText(stock.getTicker());
         currPrice.setText(stock.getPricePaid().toString());
-        dayHigh.setText(stock.getDayHigh().toString());
-        dayLow.setText(stock.getDayLow().toString());
-        openPrice.setText(stock.getOpen().toString());
-        peRatio.setText(stock.getPeRatio().toString());
-        eps.setText(stock.getPriceEPSEstimateCurrentYeat().toString());
-        divYield.setText(stock.getDividend().toString());
-        marketCap.setText(stock.getMarketCapRealTime());
+        dayHigh.setText("Day High " + stock.getDayHigh().toString());
+        dayLow.setText("Day Low " + stock.getDayLow().toString());
+        openPrice.setText("Open Price " + stock.getOpen().toString());
+        peRatio.setText("P/E Ratio " + stock.getPeRatio().toString());
+        eps.setText("EPS " + stock.getPriceEPSEstimateCurrentYeat().toString());
+        divYield.setText("Div Yield " + stock.getDividend().toString());
+        marketCap.setText("Market Cap " + stock.getMarketCapRealTime());
 
         updateLayout();
     }
 
     private void updateLayout() {
-        name.setCenter(size * 0.5, size * 0.4);
-        ticker.setCenter(size * 0.5, size * 0.45);
-        currPrice.setCenter(size,size);
+        name.setCenter(size * 0.45, size * 0.4);
+        ticker.setCenter(size * 0.55, size * 0.4);
 
+        currPrice.setCenter(size*0.5,size*0.45);
+
+        dayHigh.setCenter(size*0.45, size*0.5);
+        openPrice.setCenter(size*0.50, size*0.5);
+        dayLow.setCenter(size*0.55, size*0.5);
+
+        peRatio.setCenter(size*0.4, size*0.55);
+        eps.setCenter(size*0.45, size*0.55);
+        divYield.setCenter(size*0.5, size*0.55);
+        marketCap.setCenter(size*0.55, size*0.55);
     }
 
     @Override
