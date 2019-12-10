@@ -1,6 +1,16 @@
+import be.neesconsulting.coco.source.eod.json.EodStock;
+import be.neesconsulting.coco.source.eod.json.General;
+import be.neesconsulting.coco.source.eod.json.Highlights;
+import com.nizhegorodtsev.Stock;
+import com.nizhegorodtsev.StockDownloader;
+import com.nizhegorodtsev.StockMarkitondemandMapping;
 import comp127graphics.CanvasWindow;
 import comp127graphics.GraphicsGroup;
+import info.obba.datatools.web.MarketDataBean;
+import info.obba.datatools.web.YahooQuoteFetcher;
+//import yahoofinance.YahooFinance;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,5 +56,12 @@ public class StockBoxManager {
             stockGroup.add(brick);
             stocks.add(brick);
         }
+    }
+
+    public static void main(String[] args) {
+        Highlights stock = new Highlights();
+        General general = new General();
+        general.setName("AAPL");
+        System.out.println(stock.getEPSEstimateNextQuarter());
     }
 }

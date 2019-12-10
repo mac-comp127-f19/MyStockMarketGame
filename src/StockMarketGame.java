@@ -7,6 +7,7 @@ import java.util.List;
 public class StockMarketGame {
     private CanvasWindow canvas;
     private StockWidget marketIndexWidget;
+    private double size = 300;
 
 //    private double miniWidgetSize, largeWidgetSize;
 //    private List<WeatherWidget> miniWidgets, largeWidgets;
@@ -19,6 +20,8 @@ public class StockMarketGame {
         canvas.setBackground(new Color(88, 180, 214));
         createWidgets(700);
         new StockBoxManager(canvas);
+
+        this.size = size;
     }
 
     private List<StockWidget> createWidgets(double size) {
