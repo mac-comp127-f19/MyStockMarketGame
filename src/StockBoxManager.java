@@ -31,9 +31,9 @@ public class StockBoxManager {
         double y = canvas.getWidth() * 0.60;
         double x = margin;
         double length = 0;
-        for (int i = 0; i < 54; i++) {
-            StockBox brick = new StockBox(x, y, canvas.getWidth() * 0.05,
-                    canvas.getWidth() * 0.05);
+        for (int i = 0; i < 10; i++) {
+            StockBox brick = new StockBox(x, y, canvas.getWidth() * 0.12,
+                    canvas.getWidth() * 0.12);
             length = length + brick.getWidth() + spacing;
             if (length < canvas.getWidth() - 8 * margin) {
                 x = x + brick.getWidth() + spacing;

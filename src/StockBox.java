@@ -1,11 +1,9 @@
 import java.awt.*;
 
-import com.nizhegorodtsev.Stock;
 import comp127graphics.Rectangle;
 
 public class StockBox extends Rectangle {
-    public static final Color BOX_COLOR = new Color(50, 120, 23);
-    private Stock stockInfo;
+    public static final Color BOX_COLOR = new Color(122, 67, 106);
     private double centerX;
     private double centerY;
 
@@ -30,5 +28,7 @@ public class StockBox extends Rectangle {
                 : new Color(0xD9D9D9));
     }
 
+    public static void main(String[] args) {
+    }
 }
 

@@ -1,4 +1,3 @@
-import com.nizhegorodtsev.Stock;
 import comp127graphics.*;
 
 import java.util.ArrayList;
@@ -9,9 +8,10 @@ public class MyPortfolio implements StockWidget{
     private GraphicsGroup group;
     private double scaledBoxWidth, scaledBoxHeight, scaledBoxGap;
     private GraphicsGroup boxGroup;
-    private GraphicsText date, netWorth, stockName, sharesOwned, profit, loss;
+    private GraphicsText date, netWorth, stockName, sharesOwned, profit, loss, ticker;
     private List<StockBox> boxes = new ArrayList<>();
-    public MyPortfolio(double size) {
+
+    public MyPortfolio(double size, CanvasWindow canvas) {
         this.size = size;
         this.scaledBoxWidth = BOX_WIDTH * (size / 500.0);
         this.scaledBoxHeight = BOX_HEIGHT * (size / 500.0);
@@ -21,6 +21,10 @@ public class MyPortfolio implements StockWidget{
         date = new GraphicsText();
         date.setFont(FontStyle.BOLD, size * 0.04);
         group.add(date);
+
+        ticker = new GraphicsText();
+        ticker.setFont(FontStyle.PLAIN, size * 0.02);
+        group.add(ticker);
 
         netWorth = new GraphicsText();
         netWorth.setFont(FontStyle.BOLD, size * 0.04);
@@ -42,6 +46,11 @@ public class MyPortfolio implements StockWidget{
         loss.setFont(FontStyle.BOLD, size * 0.04);
         group.add(loss);
 
+        new StockBoxManager(canvas);
+        canvas.add(group);
+
+        update();
+
     }
     @Override
     public GraphicsObject getGraphics() {
@@ -49,13 +58,13 @@ public class MyPortfolio implements StockWidget{
     }
 
     @Override
-    public void update(Stock stock) {
-      //  date.setText(stock.getDate());
-      //  netWorth.setText(stock.get);
-        stockName.setText(stock.getStockExchange());
-        sharesOwned.setText("Shares Owned " + stock.getDayHigh().toString());
-        profit.setText("Profit  " + stock.getDayLow().toString());
-        loss.setText("/ Loss " + stock.getOpen().toString());
+    public void update() {
+        date.setText("Date ");
+        netWorth.setText("Net Worth");
+        stockName.setText("Stock Symbol");
+        sharesOwned.setText("Number of Shares Owned ");
+        profit.setText("Total Profit ");
+        loss.setText("Total Loss ");
 
 
         updateLayout();
@@ -66,8 +75,8 @@ public class MyPortfolio implements StockWidget{
         date.setCenter(size * 0.45, size * 0.1);
         netWorth.setCenter(size * 0.55, size * 0.4);
         stockName.setCenter(size * 0.5, size * 0.45);
-       sharesOwned.setCenter(size * 0.45, size * 0.5);
-         profit.setCenter(size * 0.50, size * 0.5);
+        sharesOwned.setCenter(size * 0.45, size * 0.5);
+        profit.setCenter(size * 0.50, size * 0.5);
         loss.setCenter(size * 0.55, size * 0.5);
 
     }
@@ -78,5 +87,23 @@ public class MyPortfolio implements StockWidget{
     }
 
 
-
+    @Override
+    public String toString() {
+        return "MyPortfolio{" +
+                "size=" + size +
+                ", group=" + group +
+                ", scaledBoxWidth=" + scaledBoxWidth +
+                ", scaledBoxHeight=" + scaledBoxHeight +
+                ", scaledBoxGap=" + scaledBoxGap +
+                ", boxGroup=" + boxGroup +
+                ", date=" + date +
+                ", netWorth=" + netWorth +
+                ", stockName=" + stockName +
+                ", sharesOwned=" + sharesOwned +
+                ", profit=" + profit +
+                ", loss=" + loss +
+                ", ticker=" + ticker +
+                ", boxes=" + boxes +
+                '}';
+    }
 }
