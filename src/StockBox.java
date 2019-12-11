@@ -6,6 +6,7 @@ public class StockBox extends Rectangle {
     public static final Color BOX_COLOR = new Color(122, 67, 106);
     private double centerX;
     private double centerY;
+    private Data data;
 
     /**
      * a constructor that creates a StockBox
@@ -20,12 +21,17 @@ public class StockBox extends Rectangle {
         this.setFilled(true);
         this.centerX = centerX;
         this.centerY = centerY;
+        this.data = data;
     }
 
     public void setActive(boolean active) {
         setFillColor(active
                 ? new Color(0x3ba634)
                 : new Color(0xD9D9D9));
+    }
+
+    public Data getData() {
+        return data;
     }
 
     public static void main(String[] args) {
