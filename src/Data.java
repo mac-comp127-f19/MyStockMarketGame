@@ -9,6 +9,7 @@ public class Data {
     List<Double> adbeEps = List.of(1.91, 1.10, 1.92, 1.85, 1.73);
     List<Double> adbeMarketCapInBillions = List.of(9.41, 21.02, 17.57, 15.12, 18.97);
     List<Double> adbePe = List.of(12.51, 49.38, 26.67, 25.21, 25.89);
+    List<Double> adbeDivYield = List.of(0.05, 0.04, 0.04, 0.03, 0.03);
 
     //American Express
 
@@ -18,8 +19,9 @@ public class Data {
     List<Double> axpEps = List.of(2.53, 1.14, 2.25, 3.96, 3.54);
     List<Double> axpMarketCapInBillions = List.of(31.24, 46.89, 55.78, 60.45, 76.89);
     List<Double> axpPe = List.of(4.87, 39.01, 17.82, 18.21, 16.09);
+    List<Double> axpDivYield = List.of(4.91, 1.70, 1.59, 1.48, 1.35);
 
-    //United HealthCare
+    //UnitedHealth Group
 
     List<Double> unhPrice = List.of(25.50, 20.63, 25.43, 28.58, 31.54, 32.70, 34.39, 31.33, 34.13, 35.05, 38.45, 42.60,
             49.96, 50.76, 49.00, 52.78, 55.59, 58.90, 54.25, 53.87,
@@ -27,6 +29,7 @@ public class Data {
     List<Double> unhEps = List.of(2.68, 2.97, 4.45, 5.08, 5.89);
     List<Double> unhMarketCapInBillions = List.of(28.97, 43.09, 45.24, 57.12, 50.03);
     List<Double> unhPe = List.of(11.92, 10.42, 9.11, 11.79, 9.42);
+    List<Double> unhDivYield = List.of(0.14, 0.09, 1.22, 1.18, 1.41);
 
     // Aflac AFL
     /**
@@ -38,6 +41,7 @@ public class Data {
     List<Integer> aflacPe = List.of(9,30,24,21,18,19);
     List<Integer> aflacMarketCapInBillions = List.of(10,42,50,42,49);
     List<Double> aflacEPS= List.of(1.5, 1.8, 3.0, 2.0, 4.0);
+    List<Double> aflacDivYield = List.of(2.69, 2.33, 3.12, 2.87, 2.46);
 
     /**
      * AllState
@@ -49,6 +53,7 @@ public class Data {
     List<Integer> allstatePe = List.of(20,20,19,21,10);
     List<Integer> allstateMarketCapInBillions = List.of(18, 16, 15, 16, 21);
     List<Double> allstateEPS = List.of(1.5,2.5, 0.5,1.0, 5.0);
+    List<Double> allstateDivYield = List.of(3.41, 2.83, 3.12, 2.53, 1.92);
 
     /**
      * Gap Inc.
@@ -60,6 +65,7 @@ public class Data {
     List<Integer> gapPe = List.of(7,15,12, 10, 18);
     List<Integer> gapMarketCapInBillions = List.of(8,15, 13, 10, 16);
     List<Double> gapEPS = List.of(1.4, 1.6, 1.8, 1.55, 2.19);
+    List<Double> gapDivYield = List.of(2.37, 1.55, 2.28, 1.74, 1.28);
 
     /**
      * Ford Corporation (F)
@@ -70,12 +76,15 @@ public class Data {
     List<Integer> fordPe = List.of(15, 17, 9, 5, 3);
     List<Double> fordMarketCapInBillions = List.of(2.5, 30.0, 57.0, 48.0, 47.0);
     List<Double> fordEPS = List.of(-2.5, -1.0, 2.5, 1.0,1.5);
+    List<Double> fordDivYield = List.of(2.78, 1.84, 0.99, 1.62, 2.06);
 
     /**
      * Wells Fargo Corporation (WFC)
      */
-    List<Double> wfcPrice = List.of();
+    List<Double> wfcPrice = List.of(25.14, 15.59, 25.48, 28.49, 26.99, 27.26, 30.38, 27.78 , 25.75, 30.99, 32.75,
+            32.38, 27.33, 24.20, 25.98, 28.94, 33.53, 31.43, 34.97, 33.23, 35.14, 38.20, 41.27, 42.19, 44.96);
     List<Double> wfcPe = List.of(9.7, 44.5, 16.1, 14.3, 9.9);
-    List<Double> wfcMarketCapBln = List.of();
-    List<Double> wfcEPS = List.of();
+    List<Double> wfcMarketCapInBillions = List.of(29.67, 144.32, 181.22, 187.89, 190.11);
+    List<Double> wfcEPS = List.of(0.69, 0.81, 2.11, 2.90, 3.44);
+    List<Double> wfcDivYield = List.of(2.75, 0.71, 1.49, 2.29, 2.45);
 }
