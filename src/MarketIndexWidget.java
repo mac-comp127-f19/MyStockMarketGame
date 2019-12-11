@@ -1,7 +1,6 @@
-import com.nizhegorodtsev.Stock;
 import comp127graphics.*;
-import comp127graphics.Image;
 import comp127graphics.Point;
+import comp127graphics.ui.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +13,10 @@ public class MarketIndexWidget implements StockWidget {
 
     private List<StockBox> boxes = new ArrayList<>();
 
+    private GraphicsText moneyAvailable;
     private GraphicsText ticker;
     private GraphicsText name;
     private GraphicsText currPrice;
-    private GraphicsText dayHigh;
-    private GraphicsText dayLow;
-    private GraphicsText openPrice;
 
     private GraphicsText peRatio;
     private GraphicsText eps;
@@ -27,52 +24,77 @@ public class MarketIndexWidget implements StockWidget {
     private GraphicsText marketCap;
 
 
-    public MarketIndexWidget(double size) {
+    @Override
+    public String toString() {
+        return "MarketIndexWidget{" +
+                "size=" + size +
+                ", group=" + group +
+                ", boxGroup=" + boxGroup +
+                ", boxes=" + boxes +
+                ", moneyAvailable=" + moneyAvailable +
+                ", ticker=" + ticker +
+                ", name=" + name +
+                ", currPrice=" + currPrice +
+                ", peRatio=" + peRatio +
+                ", eps=" + eps +
+                ", divYield=" + divYield +
+                ", marketCap=" + marketCap +
+                '}';
+    }
+
+    public MarketIndexWidget(double size, CanvasWindow canvas) {
         this.size = size;
 
         group = new GraphicsGroup();
 
         name = new GraphicsText();
-        name.setFont(FontStyle.BOLD, size * 0.1);
+        name.setFont(FontStyle.BOLD, size * 0.03);
         group.add(name);
 
         ticker = new GraphicsText();
-        ticker.setFont(FontStyle.PLAIN, size * 0.05);
+        ticker.setFont(FontStyle.PLAIN, size * 0.02);
         group.add(ticker);
 
         currPrice = new GraphicsText();
-        currPrice.setFont(FontStyle.PLAIN, size * 0.12);
+        currPrice.setFont(FontStyle.PLAIN, size * 0.02);
         group.add(currPrice);
 
-        dayHigh = new GraphicsText();
-        dayHigh.setFont(FontStyle.PLAIN, size * 0.05);
-        group.add(dayHigh);
-
-        dayLow = new GraphicsText();
-        dayLow.setFont(FontStyle.PLAIN, size * 0.05);
-        group.add(dayLow);
-
-        openPrice = new GraphicsText();
-        openPrice.setFont(FontStyle.PLAIN, size * 0.05);
-        group.add(openPrice);
-
         peRatio = new GraphicsText();
-        peRatio.setFont(FontStyle.PLAIN, size * 0.03);
+        peRatio.setFont(FontStyle.PLAIN, size * 0.02);
         group.add(peRatio);
 
         eps = new GraphicsText();
-        eps.setFont(FontStyle.PLAIN, size * 0.03);
+        eps.setFont(FontStyle.PLAIN, size * 0.02);
         group.add(eps);
 
         divYield = new GraphicsText();
-        divYield.setFont(FontStyle.PLAIN, size * 0.03);
+        divYield.setFont(FontStyle.PLAIN, size * 0.02);
         group.add(divYield);
 
         marketCap = new GraphicsText();
-        marketCap.setFont(FontStyle.PLAIN, size * 0.05);
+        marketCap.setFont(FontStyle.PLAIN, size * 0.02);
         group.add(marketCap);
 
-        updateLayout();
+        moneyAvailable = new GraphicsText();
+        moneyAvailable.setFont(FontStyle.PLAIN, size * 0.02);
+        group.add(moneyAvailable);
+
+        Button buyButton = new Button("Buy Stock");
+        buyButton.setPosition(size * 0.15, size * 0.15);
+        group.add(buyButton);
+
+        Button sellButton = new Button("Sell Stock");
+        sellButton.setPosition(size * 0.65, size * 0.15);
+        group.add(sellButton);
+
+        Button advanceTime = new Button("Next Quarter");
+        advanceTime.setPosition(size * 0.65, size * 0.05);
+        group.add(advanceTime);
+
+        group.add(new StockBoxManager(canvas).getStockGroup());
+
+
+        update();
 
     }
 
@@ -82,74 +104,41 @@ public class MarketIndexWidget implements StockWidget {
     }
 
     @Override
-    public void update(Stock stock) {
-        name.setText(stock.getName());
-        ticker.setText(stock.getTicker());
-        currPrice.setText(stock.getPricePaid().toString());
-        dayHigh.setText("Day High " + stock.getDayHigh().toString());
-        dayLow.setText("Day Low " + stock.getDayLow().toString());
-        openPrice.setText("Open Price " + stock.getOpen().toString());
-        peRatio.setText("P/E Ratio " + stock.getPeRatio().toString());
-        eps.setText("EPS " + stock.getPriceEPSEstimateCurrentYeat().toString());
-        divYield.setText("Div Yield " + stock.getDividend().toString());
-        marketCap.setText("Market Cap " + stock.getMarketCapRealTime());
-
+    public void update() {
+        name.setText("Stock Name");
+        ticker.setText("Stock Symbol");
+        currPrice.setText("Stock Price");
+        peRatio.setText("P/E Ratio ");
+        eps.setText("EPS ");
+        divYield.setText("Div Yield ");
+        marketCap.setText("Market Cap (In Bln)");
+        moneyAvailable.setText("Cash: ");
         updateLayout();
     }
 
     private void updateLayout() {
-        name.setCenter(size * 0.45, size * 0.4);
-        ticker.setCenter(size * 0.55, size * 0.4);
+        name.setCenter(size * 0.47, size * 0.15);
+        ticker.setCenter(size * 0.5, size * 0.2);
+        moneyAvailable.setCenter(size * 0.05, size*0.05);
+        currPrice.setCenter(size * 0.5, size * 0.25);
 
-        currPrice.setCenter(size * 0.5, size * 0.45);
-
-        dayHigh.setCenter(size * 0.45, size * 0.5);
-        openPrice.setCenter(size * 0.50, size * 0.5);
-        dayLow.setCenter(size * 0.55, size * 0.5);
-
-        peRatio.setCenter(size * 0.4, size * 0.55);
-        eps.setCenter(size * 0.45, size * 0.55);
-        divYield.setCenter(size * 0.5, size * 0.55);
-        marketCap.setCenter(size * 0.55, size * 0.55);
+        peRatio.setCenter(size * 0.2, size * 0.45);
+        eps.setCenter(size * 0.2, size * 0.55);
+        divYield.setCenter(size * 0.6, size * 0.45);
+        marketCap.setCenter(size * 0.6, size * 0.55);
     }
 
-    private StockBox getBoxAt(Point location) {
-        GraphicsObject obj = group.getElementAt(location);
-        if (obj instanceof StockBox) {
-            return (StockBox) obj;
-        }
-        return null;
-    }
 
-    private void selectForecast(StockBox box) {
-        // TODO: Call setActive() for all the forecast boxes, with true for the selected box and
-        //       false for all the others (so that the previously active one becomes inactive).
-        // TODO: Get the forecast data from the box, and use it to update the text and icon.
-        for (StockBox box1 : boxes) {
-            if (box1 == box) {
-                box1.setActive(true);
-            } else {
-                box1.setActive(false);
-            }
-        }
-    }
-//        ForecastConditions forecast = box.getForecast();
-//        label.setText(FormattingHelpers.makeOneDecimal(forecast.getTemperature()) + "\u2109");
-//        description.setText(forecast.getWeatherDescription());
-//        icon.setImagePath(forecast.getWeatherIcon());
-//        minTemp.setText(FormattingHelpers.makeOneDecimal(forecast.getMinTemperature()) +
-//                "\u2109" + " |");
-//        maxTemp.setText(FormattingHelpers.makeOneDecimal(forecast.getMaxTemperature()) + "\u2109");
-//        time.setText(FormattingHelpers.getTime(forecast.getPredictionTime()));
-//        date.setText(FormattingHelpers.getDate(forecast.getPredictionTime()));
-//        updateLayout();
+//    private StockBox getBoxAt(Point location) {
+//        GraphicsObject obj = group.getElementAt(location);
+//        if (obj instanceof StockBox) {
+//            return (StockBox) obj;
+//        }
+//        return null;
+//    }
+//
 
         @Override
         public void onHover (Point position){
-            StockBox aBox = getBoxAt(position);
-            if (aBox == null) {
-                return;
-        }
-            selectForecast(aBox);
         }
     }

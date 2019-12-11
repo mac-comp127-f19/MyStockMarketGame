@@ -1,4 +1,3 @@
-import com.nizhegorodtsev.Stock;
 import comp127graphics.GraphicsObject;
 import comp127graphics.Point;
 
@@ -17,7 +16,7 @@ public interface StockWidget {
          * Displays the given weather data in the widget, writing over any information the widget was
          * previously displaying.
          */
-        void update(Stock stock);
+        void update();
 
         /**
          * Called when the mouse moves over the widget.
