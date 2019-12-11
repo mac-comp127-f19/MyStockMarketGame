@@ -3,30 +3,30 @@ import java.util.List;
 public class Data {
     // Adobe
 
-    List<Double> adbePrice = List.of(19.31, 18.68, 29.98, 32.95, 37.34, 32.30, 35.16, 31.59,
+    private List<Double> adbePrice = List.of(19.31, 18.68, 29.98, 32.95, 37.34, 32.30, 35.16, 31.59,
             32.78, 28.79, 32.49, 34.61, 33.27, 24.15, 28.20, 28.72, 33.64, 29.82, 33.83, 37.56,
             38.13, 41.50, 44.12, 52.31, 60.89);
-    List<Double> adbeEps = List.of(1.91, 1.10, 1.92, 1.85, 1.73);
-    List<Double> adbeMarketCapInBillions = List.of(9.41, 21.02, 17.57, 15.12, 18.97);
-    List<Double> adbePe = List.of(12.51, 49.38, 26.67, 25.21, 25.89);
+    private List<Double> adbeEps = List.of(1.91, 1.10, 1.92, 1.85, 1.73);
+    private List<Double> adbeMarketCapInBillions = List.of(9.41, 21.02, 17.57, 15.12, 18.97);
+    private List<Double> adbePe = List.of(12.51, 49.38, 26.67, 25.21, 25.89);
 
     //American Express
 
-    List<Double> axpPrice = List.of(16.73, 14.45, 25.16, 34.77, 40.52, 37.66, 40.33, 38.41, 41.37,
+    private List<Double> axpPrice = List.of(16.73, 14.45, 25.16, 34.77, 40.52, 37.66, 40.33, 38.41, 41.37,
             44.88, 46.00, 44.17, 49.28, 47.28, 47.95, 50.04, 53.20, 56.79, 57.73, 57.65, 61.24, 64.70,
             72.97, 75.89, 83.68);
-    List<Double> axpEps = List.of(2.53, 1.14, 2.25, 3.96, 3.54);
-    List<Double> axpMarketCapInBillions = List.of(31.24, 46.89, 55.78, 60.45, 76.89);
-    List<Double> axpPe = List.of(4.87, 39.01, 17.82, 18.21, 16.09);
+    private List<Double> axpEps = List.of(2.53, 1.14, 2.25, 3.96, 3.54);
+    private List<Double> axpMarketCapInBillions = List.of(31.24, 46.89, 55.78, 60.45, 76.89);
+    private List<Double> axpPe = List.of(4.87, 39.01, 17.82, 18.21, 16.09);
 
     //United HealthCare
 
-    List<Double> unhPrice = List.of(25.50, 20.63, 25.43, 28.58, 31.54, 32.70, 34.39, 31.33, 34.13, 35.05, 38.45, 42.60,
+    private List<Double> unhPrice = List.of(25.50, 20.63, 25.43, 28.58, 31.54, 32.70, 34.39, 31.33, 34.13, 35.05, 38.45, 42.60,
             49.96, 50.76, 49.00, 52.78, 55.59, 58.90, 54.25, 53.87,
             56.04, 53.81, 62.57, 74.06, 74.69);
-    List<Double> unhEps = List.of(2.68, 2.97, 4.45, 5.08, 5.89);
-    List<Double> unhMarketCapInBillions = List.of(28.97, 43.09, 45.24, 57.12, 50.03);
-    List<Double> unhPe = List.of(11.92, 10.42, 9.11, 11.79, 9.42);
+    private List<Double> unhEps = List.of(2.68, 2.97, 4.45, 5.08, 5.89);
+    private List<Double> unhMarketCapInBillions = List.of(28.97, 43.09, 45.24, 57.12, 50.03);
+    private List<Double> unhPe = List.of(11.92, 10.42, 9.11, 11.79, 9.42);
 
     // Aflac AFL
     private List<Double> aflacPrice = List.of(9.19, 16.76, 21.38, 23.4, 24.55, 26.35
@@ -62,6 +62,42 @@ public class Data {
     private List<Double> fordMarketCapInBillions = List.of(2.5, 30.0, 57.0, 48.0, 47.0);
     private List<Double> fordEPS = List.of(-2.5, -1.0, 2.5, 1.0,1.5);
 
+    private List getAdbePrice() {
+        return adbePrice;
+    }
+    private List getAdbePe() {
+        return adbePe;
+    }
+    private List getAdbeEps() {
+        return adbeEps;
+    }
+    private List getAdbeMarketCapInBillions() {
+        return adbeMarketCapInBillions;
+    }
+    private List getAxpPrice() {
+        return axpPrice;
+    }
+    private List getAxpPe() {
+        return axpPe;
+    }
+    private List getAxpEPS() {
+        return axpEps;
+    }
+    private List getAxpMarketCapInBillions() {
+        return axpMarketCapInBillions;
+    }
+    private List getUnhPrice() {
+        return unhPrice;
+    }
+    private List getUnhPe() {
+        return unhPe;
+    }
+    private List getUnhEPS() {
+        return unhEps;
+    }
+    private List getUnhMarketCapInBillions() {
+        return unhMarketCapInBillions;
+    }
     public List getAflacPrice() {
         return aflacPrice;
     }
