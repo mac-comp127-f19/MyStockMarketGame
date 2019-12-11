@@ -170,4 +170,4 @@ public class Data {
     List<Double> wfcEPS = List.of(0.69, 0.81, 2.11, 2.90, 3.44);
     List<Double> wfcDivYield = List.of(2.75, 0.71, 1.49, 2.29, 2.45);
 }
-}
+
