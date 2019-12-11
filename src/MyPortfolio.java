@@ -19,7 +19,7 @@ public class MyPortfolio implements StockWidget{
         group = new GraphicsGroup();
 
         date = new GraphicsText();
-        date.setFont(FontStyle.BOLD, size * 0.04);
+        date.setFont(FontStyle.BOLD, size * 0.02);
         group.add(date);
 
         ticker = new GraphicsText();
@@ -27,27 +27,27 @@ public class MyPortfolio implements StockWidget{
         group.add(ticker);
 
         netWorth = new GraphicsText();
-        netWorth.setFont(FontStyle.BOLD, size * 0.04);
+        netWorth.setFont(FontStyle.BOLD, size * 0.02);
         group.add(netWorth);
 
         stockName = new GraphicsText();
-        stockName.setFont(FontStyle.BOLD, size * 0.04);
+        stockName.setFont(FontStyle.BOLD, size * 0.02);
         group.add(stockName);
 
         sharesOwned = new GraphicsText();
-        sharesOwned.setFont(FontStyle.BOLD, size * 0.04);
+        sharesOwned.setFont(FontStyle.BOLD, size * 0.02);
         group.add(sharesOwned);
 
         profit = new GraphicsText();
-        profit.setFont(FontStyle.BOLD, size * 0.04);
+        profit.setFont(FontStyle.BOLD, size * 0.02);
         group.add(profit);
 
         loss = new GraphicsText();
-        loss.setFont(FontStyle.BOLD, size * 0.04);
+        loss.setFont(FontStyle.BOLD, size * 0.02);
         group.add(loss);
 
         new StockBoxManager(canvas);
-        canvas.add(group);
+//        canvas.add(group);
 
         update();
 
@@ -72,12 +72,12 @@ public class MyPortfolio implements StockWidget{
     }
 
     private void updateLayout() {
-        date.setCenter(size * 0.45, size * 0.1);
-        netWorth.setCenter(size * 0.55, size * 0.4);
-        stockName.setCenter(size * 0.5, size * 0.45);
-        sharesOwned.setCenter(size * 0.45, size * 0.5);
-        profit.setCenter(size * 0.50, size * 0.5);
-        loss.setCenter(size * 0.55, size * 0.5);
+        date.setCenter(size * 0.1, size * 0.05);
+        netWorth.setCenter(size * 0.9, size * 0.05);
+        stockName.setCenter(size * 0.5, size * 0.15);
+        sharesOwned.setCenter(size * 0.5, size * 0.25);
+        profit.setCenter(size * 0.5, size * 0.45);
+        loss.setCenter(size * 0.5, size * 0.55);
 
     }
 
