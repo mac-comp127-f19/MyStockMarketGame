@@ -58,6 +58,10 @@ public class StockBoxManager {
         }
     }
 
+    private void assignStockBoxValues(CanvasWindow canvas) {
+
+    }
+
     public static void main(String[] args) {
         Highlights stock = new Highlights();
         General general = new General();

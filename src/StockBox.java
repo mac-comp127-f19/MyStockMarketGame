@@ -5,7 +5,7 @@ import comp127graphics.Rectangle;
 
 public class StockBox extends Rectangle {
     public static final Color BOX_COLOR = new Color(50, 120, 23);
-    private Stock stockInfo;
+    private Data data;
     private double centerX;
     private double centerY;
 
@@ -22,12 +22,17 @@ public class StockBox extends Rectangle {
         this.setFilled(true);
         this.centerX = centerX;
         this.centerY = centerY;
+        this.data = data;
     }
 
     public void setActive(boolean active) {
         setFillColor(active
                 ? new Color(0x3ba634)
                 : new Color(0xD9D9D9));
+    }
+
+    public Data getData() {
+        return data;
     }
 
 }
