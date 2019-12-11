@@ -84,6 +84,7 @@ public class StockMarketGame {
 
         if (displayedLargeWidget != null) {
             canvas.remove(displayedLargeWidget.getGraphics());
+//            canvas.remove(MarketIndexWidget.)
 //            System.out.println("removed widget");
         }
 

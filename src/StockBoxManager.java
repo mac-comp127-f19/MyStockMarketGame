@@ -16,10 +16,10 @@ public class StockBoxManager {
      */
     StockBoxManager(CanvasWindow canvas) {
 
-
         stockGroup = new GraphicsGroup();
         createStockBoxes(canvas);
 //        canvas.add(stockGroup);
+
     }
 
     /**
@@ -43,11 +43,14 @@ public class StockBoxManager {
                 x = margin;
                 length = 0;
                 y = y + spacing + stockBox.getHeight();
-
             }
             stockGroup.add(stockBox);
             stocks.add(stockBox);
         }
+    }
+
+    private void assignStockBoxValues() {
+
     }
 
     public GraphicsGroup getStockGroup() {

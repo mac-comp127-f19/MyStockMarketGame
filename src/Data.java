@@ -78,13 +78,96 @@ public class Data {
     List<Double> fordEPS = List.of(-2.5, -1.0, 2.5, 1.0,1.5);
     List<Double> fordDivYield = List.of(2.78, 1.84, 0.99, 1.62, 2.06);
 
-    /**
-     * Wells Fargo Corporation (WFC)
-     */
+
+    private List getAdbePrice() {
+        return adbePrice;
+    }
+    private List getAdbePe() {
+        return adbePe;
+    }
+    private List getAdbeEps() {
+        return adbeEps;
+    }
+    private List getAdbeMarketCapInBillions() {
+        return adbeMarketCapInBillions;
+    }
+    private List getAxpPrice() {
+        return axpPrice;
+    }
+    private List getAxpPe() {
+        return axpPe;
+    }
+    private List getAxpEPS() {
+        return axpEps;
+    }
+    private List getAxpMarketCapInBillions() {
+        return axpMarketCapInBillions;
+    }
+    private List getUnhPrice() {
+        return unhPrice;
+    }
+    private List getUnhPe() {
+        return unhPe;
+    }
+    private List getUnhEPS() {
+        return unhEps;
+    }
+    private List getUnhMarketCapInBillions() {
+        return unhMarketCapInBillions;
+    }
+    public List getAflacPrice() {
+        return aflacPrice;
+    }
+    public List getAflacPe() {
+        return aflacPe;
+    }
+    public List getAflacMarketCapInBillions() {
+        return aflacMarketCapInBillions;
+    }
+    public List aflacEPS() {
+        return aflacEPS;
+    }
+    public List getAllstatePrice() {
+        return allstatePrice;
+    }
+    public List getAllstatePe() {
+        return allstatePe;
+    }
+    public List getAllstateMarketCapInBillions() {
+        return allstateMarketCapInBillions;
+    }
+    public List getAllstateEPS() {
+        return allstateEPS;
+    }
+    public List getGapPrice() {
+        return gapPrice;
+    }
+    public List getGapPe() {
+        return gapPe;
+    }
+    public List getGapMarketCapInBillions() {
+        return gapMarketCapInBillions;
+    }
+    public List getGapEPS() {
+        return gapEPS;
+    }
+    public List getFordPrice() {
+        return fordPrice;
+    }
+    public List getFordPe() {
+        return fordPe;
+    }
+    public List getFordMarketCapInBillions() {
+        return fordMarketCapInBillions;
+    }
+    public List getFordEPS() {
+        return fordEPS;
+    }
     List<Double> wfcPrice = List.of(25.14, 15.59, 25.48, 28.49, 26.99, 27.26, 30.38, 27.78 , 25.75, 30.99, 32.75,
             32.38, 27.33, 24.20, 25.98, 28.94, 33.53, 31.43, 34.97, 33.23, 35.14, 38.20, 41.27, 42.19, 44.96);
     List<Double> wfcPe = List.of(9.7, 44.5, 16.1, 14.3, 9.9);
     List<Double> wfcMarketCapInBillions = List.of(29.67, 144.32, 181.22, 187.89, 190.11);
     List<Double> wfcEPS = List.of(0.69, 0.81, 2.11, 2.90, 3.44);
     List<Double> wfcDivYield = List.of(2.75, 0.71, 1.49, 2.29, 2.45);
+}
 }
