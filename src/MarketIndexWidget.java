@@ -4,6 +4,7 @@ import comp127graphics.ui.Button;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MarketIndexWidget implements StockWidget {
     private final double size;
@@ -22,7 +23,11 @@ public class MarketIndexWidget implements StockWidget {
     private GraphicsText eps;
     private GraphicsText divYield;
     private GraphicsText marketCap;
-
+    private Button buyButton;
+    private Button sellButton;
+    private Button nextQuarterButton;
+    public static double cash = 10000;
+    private Data data;
 
     @Override
     public String toString() {
@@ -95,7 +100,9 @@ public class MarketIndexWidget implements StockWidget {
 
 
         update();
-
+        
+//        nextQuarterButton = //;
+//        nextQuarterButton.onClick(this::infoUpdate);
     }
 
     @Override
@@ -129,6 +136,15 @@ public class MarketIndexWidget implements StockWidget {
     }
 
 
+    //Please Do not touch this method or at least tell me that you are going to do that
+
+
+    public void updateCash (double cash, Data data){
+        this.data = data;
+       //  if(buyButton.onClick() && data.getAdbePrice()< cash)
+    }
+
+
 //    private StockBox getBoxAt(Point location) {
 //        GraphicsObject obj = group.getElementAt(location);
 //        if (obj instanceof StockBox) {
@@ -136,7 +152,66 @@ public class MarketIndexWidget implements StockWidget {
 //        }
 //        return null;
 //    }
+    private int i = 0;
+    public void infoUpdate(){
+//        int i = 0;
+        i++;
+
+        System.out.println("I'm clicked!");
+            for (Data stock : Data.STOCKS) {
+                stock.getPrice().get(i);
+            }
+            List<Double> prices = Data.STOCKS.stream().map(stock -> stock.getPrice().get(i)).collect(Collectors.toList());
+            System.out.println(prices);
+            Data.ADBE.getPrice();
+//            data.adbePrice.get(i);
+//            data.axpPrice.get(i);
+//            data.unhPrice.get(i);
+//            data.aflacPrice.get(i);
+//            data.allstatePrice.get(i);
+//            data.gapPrice.get(i);
+//            data.fordPrice.get(i);
+//            data.wfcPrice.get(i);
+            
+            int shortListi = i / 5;
+//            if (i % 4 == 1){
+//                data.adbeDivYield.get(shortListi);
+//                data.adbePe.get(shortListi);
+//                data.adbeEps.get(shortListi);
+//                data.adbeMarketCapInBillions.get(shortListi);
+
+//                data.axpDivYield.get(shortListi);
+//                data.axpPe.get(shortListi);
+//                data.axpEps.get(shortListi);
+//                data.axpMarketCapInBillions.get(shortListi);
+
+//                data.unhDivYield.get(shortListi);
+//                data.unhPe.get(shortListi);
+//                data.unhEps.get(shortListi);
+//                data.unhMarketCapInBillions.get(shortListi);
 //
+//                data.aflacDivYield.get(shortListi);
+//                data.aflacPe.get(shortListi);
+//                data.aflacEPS.get(shortListi);
+//                data.aflacMarketCapInBillions.get(shortListi);
+//
+//                data.allstateDivYield.get(shortListi);
+//                data.allstatePe.get(shortListi);
+//                data.allstateEPS.get(shortListi);
+//                data.allstateMarketCapInBillions.get(shortListi);
+//
+//                data.gapDivYield.get(shortListi);
+//                data.gapPe.get(shortListi);
+//                data.gapEPS.get(shortListi);
+//                data.gapMarketCapInBillions.get(shortListi);
+//
+//                data.fordDivYield.get(shortListi);
+//                data.fordPe.get(shortListi);
+//                data.fordEPS.get(shortListi);
+//                data.fordMarketCapInBillions.get(shortListi);
+//            }
+        
+    }
 
         @Override
         public void onHover (Point position){
