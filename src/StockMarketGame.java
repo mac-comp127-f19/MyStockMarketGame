@@ -20,7 +20,7 @@ public class StockMarketGame {
                 "Stock Market Game",
                 (int) Math.round(largeWidgetSize + miniWidgetSize),
                 (int) Math.round(largeWidgetSize));
-        canvas.setBackground(new Color(153, 204, 255));
+        canvas.setBackground(new Color(255, 253, 155));
 
         largeWidgets = createWidgets(largeWidgetSize);
         miniWidgets = createWidgets(miniWidgetSize);
@@ -42,6 +42,10 @@ public class StockMarketGame {
             if (displayedLargeWidget != null && event.getPosition().getX() < largeWidgetSize) {
                 displayedLargeWidget.onHover(event.getPosition());
             }
+//            if(displayedLargeWidget!=largeWidgets.get(0)) {
+//                largeWidgets.get(0).;
+//            }
+
         });
 
         canvas.onClick(event -> {
@@ -50,6 +54,8 @@ public class StockMarketGame {
                         (int) (event.getPosition().getY() / largeWidgetSize * miniWidgets.size()));
             }
         });
+
+
 
     }
 
@@ -68,8 +74,8 @@ public class StockMarketGame {
 
     private List<StockWidget> createWidgets(double size) {
         return List.of(
-                new MarketIndexWidget(size, canvas),
-                new MyPortfolio(size, canvas));
+                new MarketIndexWidget(size, false),
+                new MyPortfolio(size));
     }
 
     /**
@@ -84,15 +90,17 @@ public class StockMarketGame {
 
         if (displayedLargeWidget != null) {
             canvas.remove(displayedLargeWidget.getGraphics());
-//            canvas.remove(MarketIndexWidget.)
-//            System.out.println("removed widget");
+            createWidgets(largeWidgetSize).get(0).update();
+            displayedLargeWidget.setActive(false);
         }
 
         displayedLargeWidget = largeWidgets.get(index);
+        displayedLargeWidget.setActive(true);
         canvas.add(displayedLargeWidget.getGraphics());
 
         selectionHighlight.setPosition(largeWidgetSize, miniWidgetSize * index);
     }
+
 
     public static void main(String[] args){
         new StockMarketGame(600);

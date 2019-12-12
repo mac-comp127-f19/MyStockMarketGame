@@ -21,7 +21,9 @@ public class StockBox extends Rectangle {
         this.setFilled(true);
         this.centerX = centerX;
         this.centerY = centerY;
-        this.data = data;
+        setStrokeWidth(Math.rint((width + height) / 40 + 1) * 0.5);
+        setActive(false);
+
     }
 
     public void setActive(boolean active) {
@@ -32,9 +34,6 @@ public class StockBox extends Rectangle {
 
     public Data getData() {
         return data;
-    }
-
-    public static void main(String[] args) {
     }
 }
 

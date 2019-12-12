@@ -1,5 +1,4 @@
 import comp127graphics.*;
-import comp127graphics.Point;
 import comp127graphics.ui.Button;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ public class MarketIndexWidget implements StockWidget {
     private final double size;
     private GraphicsGroup group;
 
-    private GraphicsGroup boxGroup;
+    private GraphicsGroup buttonGroup;
 
     private List<StockBox> boxes = new ArrayList<>();
 
@@ -22,14 +21,17 @@ public class MarketIndexWidget implements StockWidget {
     private GraphicsText eps;
     private GraphicsText divYield;
     private GraphicsText marketCap;
-
+    private Button buyButton;
+    private Button sellButton;
+    private Button advanceTime;
+    private boolean buttonActive = false;
 
     @Override
     public String toString() {
         return "MarketIndexWidget{" +
                 "size=" + size +
                 ", group=" + group +
-                ", boxGroup=" + boxGroup +
+                ", boxGroup=" + buttonGroup +
                 ", boxes=" + boxes +
                 ", moneyAvailable=" + moneyAvailable +
                 ", ticker=" + ticker +
@@ -42,10 +44,11 @@ public class MarketIndexWidget implements StockWidget {
                 '}';
     }
 
-    public MarketIndexWidget(double size, CanvasWindow canvas) {
+    public MarketIndexWidget(double size, boolean buttonActive) {
         this.size = size;
 
         group = new GraphicsGroup();
+        buttonGroup = new GraphicsGroup();
 
         name = new GraphicsText();
         name.setFont(FontStyle.BOLD, size * 0.03);
@@ -79,29 +82,42 @@ public class MarketIndexWidget implements StockWidget {
         moneyAvailable.setFont(FontStyle.PLAIN, size * 0.02);
         group.add(moneyAvailable);
 
-        Button buyButton = new Button("Buy Stock");
-        buyButton.setPosition(size * 0.15, size * 0.15);
-        group.add(buyButton);
+        buyButton = new Button("Buy Stock");
+        buttonGroup.add(buyButton);
 
-        Button sellButton = new Button("Sell Stock");
-        sellButton.setPosition(size * 0.65, size * 0.15);
-        group.add(sellButton);
+        sellButton = new Button("Sell Stock");
+        buttonGroup.add(sellButton);
 
-        Button advanceTime = new Button("Next Quarter");
-        advanceTime.setPosition(size * 0.65, size * 0.05);
-        group.add(advanceTime);
-
-        group.add(new StockBoxManager(canvas).getStockGroup());
+        advanceTime = new Button("Next Quarter");
+        buttonGroup.add(advanceTime);
 
 
+        group.add(new StockBoxManager(size).getStockGroup());
+        setButtonActive(buttonActive);
         update();
 
+    }
+
+
+    public GraphicsObject getButtons() {
+        return buttonGroup;
+    }
+
+    public void setButtonActive(boolean buttonActive) {
+        if (this.buttonActive == buttonActive) return;
+        this.buttonActive = buttonActive;
+        if (!buttonActive) {
+            group.remove(getButtons());
+        } else {
+            group.add(getButtons());
+        }
     }
 
     @Override
     public GraphicsObject getGraphics() {
         return group;
     }
+
 
     @Override
     public void update() {
@@ -119,26 +135,44 @@ public class MarketIndexWidget implements StockWidget {
     private void updateLayout() {
         name.setCenter(size * 0.47, size * 0.15);
         ticker.setCenter(size * 0.5, size * 0.2);
-        moneyAvailable.setCenter(size * 0.05, size*0.05);
+        moneyAvailable.setCenter(size * 0.05, size * 0.05);
         currPrice.setCenter(size * 0.5, size * 0.25);
-
         peRatio.setCenter(size * 0.2, size * 0.45);
         eps.setCenter(size * 0.2, size * 0.55);
         divYield.setCenter(size * 0.6, size * 0.45);
         marketCap.setCenter(size * 0.6, size * 0.55);
+        buyButton.setCenter(size * 0.15, size * 0.15);
+        sellButton.setCenter(size * 0.65, size * 0.15);
+        advanceTime.setCenter(size * 0.65, size * 0.05);
+
     }
 
-
-//    private StockBox getBoxAt(Point location) {
-//        GraphicsObject obj = group.getElementAt(location);
-//        if (obj instanceof StockBox) {
-//            return (StockBox) obj;
-//        }
-//        return null;
-//    }
-//
-
-        @Override
-        public void onHover (Point position){
+        private StockBox getBoxAt(Point location) {
+        GraphicsObject obj = group.getElementAt(location);
+        if (obj instanceof StockBox) {
+            return (StockBox) obj;
         }
+        return null;
     }
+    private void selectForecast(StockBox box) {
+        for (StockBox box1 : boxes) {
+            box1.setActive(false);
+        }
+        box.setActive(true);
+        update();
+
+        updateLayout();
+    }
+
+    @Override
+    public void onHover(Point position) {
+        StockBox selectBox = getBoxAt(position);
+        if (selectBox == null) return;
+        selectForecast(selectBox);
+    }
+
+    @Override
+    public void setActive(boolean b) {
+        setButtonActive(b);
+    }
+}

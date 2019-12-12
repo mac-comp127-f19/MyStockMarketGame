@@ -24,5 +24,7 @@ public interface StockWidget {
          * @param position A location in the widget’s local coordinates.
          */
         void onHover(Point position);
-    }
+
+        void setActive(boolean b);
+}
 

@@ -11,7 +11,7 @@ public class MyPortfolio implements StockWidget{
     private GraphicsText date, netWorth, stockName, sharesOwned, profit, loss, ticker;
     private List<StockBox> boxes = new ArrayList<>();
 
-    public MyPortfolio(double size, CanvasWindow canvas) {
+    public MyPortfolio(double size) {
         this.size = size;
         this.scaledBoxWidth = BOX_WIDTH * (size / 500.0);
         this.scaledBoxHeight = BOX_HEIGHT * (size / 500.0);
@@ -46,7 +46,8 @@ public class MyPortfolio implements StockWidget{
         loss.setFont(FontStyle.BOLD, size * 0.02);
         group.add(loss);
 
-        new StockBoxManager(canvas);
+
+        new StockBoxManager(size);
 //        canvas.add(group);
 
         update();
@@ -66,7 +67,6 @@ public class MyPortfolio implements StockWidget{
         profit.setText("Total Profit ");
         loss.setText("Total Loss ");
 
-
         updateLayout();
 
     }
@@ -78,11 +78,15 @@ public class MyPortfolio implements StockWidget{
         sharesOwned.setCenter(size * 0.5, size * 0.25);
         profit.setCenter(size * 0.5, size * 0.45);
         loss.setCenter(size * 0.5, size * 0.55);
-
     }
 
     @Override
     public void onHover(Point position) {
+
+    }
+
+    @Override
+    public void setActive(boolean b) {
 
     }
 

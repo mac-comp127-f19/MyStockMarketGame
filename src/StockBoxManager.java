@@ -1,23 +1,26 @@
 import comp127graphics.CanvasWindow;
 import comp127graphics.GraphicsGroup;
+import comp127graphics.GraphicsObject;
+import comp127graphics.Point;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StockBoxManager {
+    final private double size;
     private GraphicsGroup stockGroup;
     private List<StockBox> stocks = new ArrayList<>();
+
 
     /**
      * Constructor which creates a brickGroup graphicsGroup, calls createBricks method
      * to build a wall and adds it to canvas.
      *
-     * @param canvas
      */
-    StockBoxManager(CanvasWindow canvas) {
-
+    StockBoxManager(double size) {
+        this.size = size;
         stockGroup = new GraphicsGroup();
-        createStockBoxes(canvas);
+        createStockBoxes();
 //        canvas.add(stockGroup);
 
     }
@@ -25,19 +28,17 @@ public class StockBoxManager {
     /**
      * Takes in canvas as a parameter and creates lines of stock boxers.
      *
-     * @param canvas
      */
-    private void createStockBoxes(CanvasWindow canvas) {
-        double margin = canvas.getWidth() * 0.05;
-        double spacing = canvas.getWidth() * 0.01;
-        double y = canvas.getWidth() * 0.60;
+    private void createStockBoxes() {
+        double margin = size * 0.05;
+        double spacing = size * 0.01;
+        double y = size * 0.85;
         double x = margin;
         double length = 0;
-        for (int i = 0; i < 10; i++) {
-            StockBox stockBox = new StockBox(x, y, canvas.getWidth() * 0.05,
-                    canvas.getWidth() * 0.05);
+        for (int i = 0; i < 2; i++) {
+            StockBox stockBox = new StockBox(x, y, size * 0.03, size * 0.04);
             length = length + stockBox.getWidth() + spacing;
-            if (length < canvas.getWidth() - 8 * margin) {
+            if (length < size - 2 * margin) {
                 x = x + stockBox.getWidth() + spacing;
             } else {
                 x = margin;
@@ -56,5 +57,33 @@ public class StockBoxManager {
     public GraphicsGroup getStockGroup() {
         return stockGroup;
     }
+
+    /**
+     * Given a position in the widget, this returns the ForecastBox at that position if one exists
+     *
+     * @param location pos to check
+     * @return null if not over a forecast box
+     */
+    private StockBox getBoxAt(Point location) {
+        GraphicsObject obj = stockGroup.getElementAt(location);
+        if (obj instanceof StockBox) {
+            return (StockBox) obj;
+        }
+        return null;
+    }
+
+    /**
+     * Updates the currently displayed forecast information as the mouse moves over the widget.
+     * If there is not a ForecastBox at that position, the display does not change.
+     */
+//    @Override
+//    public void onHover(Point position) {
+//        StockBox selectBox = getBoxAt(position);
+//        if (selectBox == null) return;
+//        selectForecast(selectBox);
+//
+//    }
+
+
 }
 
