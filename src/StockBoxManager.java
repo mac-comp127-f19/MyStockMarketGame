@@ -35,8 +35,8 @@ public class StockBoxManager {
         double y = size * 0.85;
         double x = margin;
         double length = 0;
-        for (int i = 0; i < 2; i++) {
-            StockBox stockBox = new StockBox(x, y, size * 0.03, size * 0.04);
+        for (int i = 0; i < 10; i++) {
+            StockBox stockBox = new StockBox(x, y, size * 0.05, size * 0.05);
             length = length + stockBox.getWidth() + spacing;
             if (length < size - 2 * margin) {
                 x = x + stockBox.getWidth() + spacing;
@@ -58,31 +58,11 @@ public class StockBoxManager {
         return stockGroup;
     }
 
-    /**
-     * Given a position in the widget, this returns the ForecastBox at that position if one exists
-     *
-     * @param location pos to check
-     * @return null if not over a forecast box
-     */
-    private StockBox getBoxAt(Point location) {
-        GraphicsObject obj = stockGroup.getElementAt(location);
-        if (obj instanceof StockBox) {
-            return (StockBox) obj;
-        }
-        return null;
-    }
 
     /**
      * Updates the currently displayed forecast information as the mouse moves over the widget.
      * If there is not a ForecastBox at that position, the display does not change.
      */
-//    @Override
-//    public void onHover(Point position) {
-//        StockBox selectBox = getBoxAt(position);
-//        if (selectBox == null) return;
-//        selectForecast(selectBox);
-//
-//    }
 
 
 }

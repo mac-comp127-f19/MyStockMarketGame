@@ -47,7 +47,7 @@ public class MyPortfolio implements StockWidget{
         group.add(loss);
 
 
-        new StockBoxManager(size);
+//        new StockBoxManager(size);
 //        canvas.add(group);
 
         update();
