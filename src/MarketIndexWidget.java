@@ -162,21 +162,21 @@ public class MarketIndexWidget implements StockWidget {
         eps.setText("EPS " + Data.ADBE.getEps().get(0).toString());
         divYield.setText("Div Yield " + Data.ADBE.getDivYield().get(0).toString());
         marketCap.setText("Market Cap (In Bln) " + Data.ADBE.getMarketCapInBillions().get(0).toString());
-        moneyAvailable.setText("Cash: ");
+        moneyAvailable.setText("Cash: " + cash);
         updateLayout();
     }
 
     private void updateLayout() {
         name.setCenter(size * 0.47, size * 0.15);
         ticker.setCenter(size * 0.5, size * 0.2);
-        moneyAvailable.setCenter(size * 0.05, size * 0.05);
+        moneyAvailable.setCenter(size * 0.1, size * 0.05);
         currPrice.setCenter(size * 0.5, size * 0.25);
         peRatio.setCenter(size * 0.2, size * 0.45);
         eps.setCenter(size * 0.2, size * 0.55);
         divYield.setCenter(size * 0.6, size * 0.45);
         marketCap.setCenter(size * 0.6, size * 0.55);
         buyButton.setCenter(size * 0.15, size * 0.15);
-        sellButton.setCenter(size * 0.65, size * 0.15);
+        sellButton.setCenter(size * 0.80, size * 0.15);
         advanceTime.setCenter(size * 0.65, size * 0.05);
     }
 

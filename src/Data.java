@@ -48,6 +48,14 @@ public class Data {
         return divYield;
     }
 
+    public List<Data> getSTOCKS() {
+        return STOCKS;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     // Adobe
 
     public static final Data ADBE = new Data("Adobe", List.of(19.31, 18.68, 29.98, 32.95,
