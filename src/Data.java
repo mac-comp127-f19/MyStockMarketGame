@@ -6,7 +6,8 @@ public class Data {
     private final List<Double> price, eps, marketCapInBillions, pe, divYield;
 
 
-    public Data(String name, List<Double> price, List<Double> eps, List<Double> marketCapInBillions, List<Double> pe, List<Double> divYield) {
+    public Data(String name, List<Double> price, List<Double> eps, List<Double> marketCapInBillions,
+                List<Double> pe, List<Double> divYield) {
         this.price = price;
         this.eps = eps;
         this.marketCapInBillions = marketCapInBillions;

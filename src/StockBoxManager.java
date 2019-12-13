@@ -2,6 +2,9 @@ import comp127graphics.CanvasWindow;
 import comp127graphics.GraphicsGroup;
 import comp127graphics.GraphicsObject;
 import comp127graphics.Point;
+import comp127graphics.GraphicsObject;
+import comp127graphics.Point;
+import javaFoundations4thEd.ch5.slogan.Slogan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +13,7 @@ public class StockBoxManager {
     final private double size;
     private GraphicsGroup stockGroup;
     private List<StockBox> stocks = new ArrayList<>();
+    private Data data;
 
 
     /**
@@ -22,7 +26,6 @@ public class StockBoxManager {
         stockGroup = new GraphicsGroup();
         createStockBoxes();
 //        canvas.add(stockGroup);
-
     }
 
     /**
@@ -50,9 +53,13 @@ public class StockBoxManager {
         }
     }
 
-    private void assignStockBoxValues() {
+//    private void assignStockBoxValues() {
+//        for (StockBox stockBox : stocks) {
+//            stockBox.
+//            }
+//        }
+//    }
 
-    }
 
     public GraphicsGroup getStockGroup() {
         return stockGroup;

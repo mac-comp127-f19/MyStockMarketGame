@@ -50,7 +50,7 @@ public class MyPortfolio implements StockWidget{
         new StockBoxManager(size);
 //        canvas.add(group);
 
-        update();
+//        update();
 
     }
     @Override
@@ -59,7 +59,7 @@ public class MyPortfolio implements StockWidget{
     }
 
     @Override
-    public void update() {
+    public void update(Data data) {
         date.setText("Date ");
         netWorth.setText("Net Worth");
         stockName.setText("Stock Symbol");

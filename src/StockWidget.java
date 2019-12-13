@@ -16,7 +16,7 @@ public interface StockWidget {
          * Displays the given weather data in the widget, writing over any information the widget was
          * previously displaying.
          */
-        void update();
+        void update(Data data);
 
         /**
          * Called when the mouse moves over the widget.

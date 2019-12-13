@@ -6,6 +6,7 @@ import java.util.List;
 
 public class StockMarketGame {
     private CanvasWindow canvas;
+    private Data data;
 
     private double miniWidgetSize, largeWidgetSize;
     private List<StockWidget> miniWidgets, largeWidgets;
