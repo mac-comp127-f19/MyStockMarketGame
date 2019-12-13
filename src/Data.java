@@ -46,6 +46,9 @@ public class Data {
     public List<Double> getDivYield() {
         return divYield;
     }
+    public String getName() {
+        return name;
+    }
 
     // Adobe
 
