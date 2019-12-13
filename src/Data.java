@@ -20,6 +20,18 @@ public class Data {
         return price;
     }
 
+    @Override
+    public String toString() {
+        return "Data{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", eps=" + eps +
+                ", marketCapInBillions=" + marketCapInBillions +
+                ", pe=" + pe +
+                ", divYield=" + divYield +
+                '}';
+    }
+
     public List<Double> getEps() {
         return eps;
     }
