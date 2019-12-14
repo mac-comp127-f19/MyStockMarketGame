@@ -83,7 +83,7 @@ public class Data {
 
     // Aflac Incorporated
 
-    public static final Data AFL = new Data("AFLAC INCORPORATED",  List.of(9.19, 16.76, 21.38, 23.4, 24.55, 26.35
+    public static final Data AFL = new Data("Aflac Inc",  List.of(9.19, 16.76, 21.38, 23.4, 24.55, 26.35
             ,21.8, 25.47, 27.78, 28.84, 28.71, 22.43, 15.73, 21.89, 24.52, 23.44, 21.3
             ,24.83, 26.91, 25.74, 28.33, 31.11, 32.98, 28.33), List.of(9.02,30.11,24.01,21.09,18.87,19.33),
             List.of(10.23,42.11,50.67,42.55,49.11),

@@ -83,16 +83,6 @@ public class MarketIndexWidget implements StockWidget {
 
         buyButton = new Button("Buy Stock");
         buttonGroup.add(buyButton);
-        buyButton.onClick(() -> {
-            if (checkBuyPossible()) {
-
-                update();
-//                System.out.println(cash);
-            }
-            else {
-                System.out.println("Cannot buy any more");
-            }
-        });
 
         sellButton = new Button("Sell Stock");
         buttonGroup.add(sellButton);
@@ -119,8 +109,8 @@ public class MarketIndexWidget implements StockWidget {
         double y = size * 0.85;
         double x = margin;
         double length = 0;
-        for (int i = 0; i < 10; i++) {
-            StockBox stockBox = new StockBox(x, y, size * 0.03, size * 0.04);
+        for (Data stock : Data.STOCKS) {
+            StockBox stockBox = new StockBox(x, y, size * 0.03, size * 0.04, stock);
             length = length + stockBox.getWidth() + spacing;
             if (length < size - 2 * margin) {
                 x = x + stockBox.getWidth() + spacing;
@@ -129,6 +119,17 @@ public class MarketIndexWidget implements StockWidget {
                 length = 0;
                 y = y + spacing + stockBox.getHeight();
             }
+            buyButton.onClick(() -> {
+                if (checkBuyPossible()) {
+
+                    cash -= Data.STOCKS.get(0).getPrice().get(0);
+                    update();
+//                System.out.println(cash);
+                }
+                else {
+                    System.out.println("Cannot buy any more");
+                }
+            });
             stockGroup.add(stockBox);
             stocks.add(stockBox);
         }
@@ -139,7 +140,7 @@ public class MarketIndexWidget implements StockWidget {
     }
 
     private boolean checkBuyPossible() {
-        return cash > (Data.ADBE.getPrice().get(0));
+            return cash > (Data.ADBE.getPrice().get(0));
     }
 
     public void setButtonActive(boolean buttonActive) {
@@ -160,19 +161,18 @@ public class MarketIndexWidget implements StockWidget {
 
     @Override
     public void update() {
-        for (int i = 0; i < 7; i++) {
-            for (StockBox stockBox : stocks) {
-                name.setText(Data.STOCKS.get(i).getName());
-                currPrice.setText("Stock Price " + Data.STOCKS.get(i).getPrice().get(0).toString());
-                peRatio.setText("P/E Ratio " + Data.STOCKS.get(i).getPe().get(0).toString());
-                eps.setText("EPS " + Data.STOCKS.get(i).getEps().get(0).toString());
-                divYield.setText("Div Yield " + Data.STOCKS.get(i).getDivYield().get(0).toString());
-                marketCap.setText("Market Cap (In Bln) " + Data.STOCKS.get(i).getMarketCapInBillions().get(0).toString());
-                moneyAvailable.setText("Cash: " + cash);
-            }
-        }
+        name.setText("");
+        currPrice.setText("Stock Price ");
+        peRatio.setText("P/E Ratio " );
+        eps.setText("EPS " );
+        divYield.setText("Div Yield " );
+        marketCap.setText("Market Cap (In Bln) ");
+        moneyAvailable.setText("Cash: " + cash);
         updateLayout();
     }
+
+
+
 
 
     private void updateLayout() {
@@ -184,7 +184,7 @@ public class MarketIndexWidget implements StockWidget {
         divYield.setCenter(size * 0.6, size * 0.45);
         marketCap.setCenter(size * 0.6, size * 0.55);
         buyButton.setCenter(size * 0.15, size * 0.15);
-        sellButton.setCenter(size * 0.65, size * 0.15);
+        sellButton.setCenter(size * 0.80, size * 0.15);
         advanceTime.setCenter(size * 0.65, size * 0.05);
     }
 
@@ -195,15 +195,19 @@ public class MarketIndexWidget implements StockWidget {
         }
         return null;
     }
-
     private void selectStock(StockBox box) {
         for (StockBox box1 : stocks) {
             box1.setActive(false);
         }
         box.setActive(true);
-        update();
-
-        updateLayout();
+        Data stock = box.getStock();
+        name.setText(stock.getName());
+        currPrice.setText("Stock Price " + stock.getPrice());
+        peRatio.setText("P/E Ratio " + stock.getPe());
+        eps.setText("EPS " + stock.getEps());
+        divYield.setText("Div Yield " + stock.getDivYield());
+        marketCap.setText("Market Cap (In Bln) " + stock.getMarketCapInBillions());
+//        updateLayout();
     }
 
     //Please Do not touch this method or at least tell me that you are going to do that
