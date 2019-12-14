@@ -6,6 +6,7 @@ import java.util.List;
 
 public class StockMarketGame {
     private CanvasWindow canvas;
+    private Data data;
 
     private double miniWidgetSize, largeWidgetSize;
     private List<StockWidget> miniWidgets, largeWidgets;
@@ -54,9 +55,6 @@ public class StockMarketGame {
                         (int) (event.getPosition().getY() / largeWidgetSize * miniWidgets.size()));
             }
         });
-
-
-
     }
 
 //    private void updateWeather() {
@@ -93,14 +91,12 @@ public class StockMarketGame {
             createWidgets(largeWidgetSize).get(0).update();
             displayedLargeWidget.setActive(false);
         }
-
         displayedLargeWidget = largeWidgets.get(index);
         displayedLargeWidget.setActive(true);
         canvas.add(displayedLargeWidget.getGraphics());
 
         selectionHighlight.setPosition(largeWidgetSize, miniWidgetSize * index);
     }
-
 
     public static void main(String[] args){
         new StockMarketGame(600);

@@ -2,6 +2,7 @@ import comp127graphics.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
 public class MyPortfolio implements StockWidget{
     private static final double BOX_WIDTH = 20, BOX_HEIGHT = 30, BOX_GAP = 10;
     private double size;
