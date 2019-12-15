@@ -1,6 +1,7 @@
 import comp127graphics.*;
 import comp127graphics.ui.Button;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class MarketIndexWidget implements StockWidget {
 
 
     private List<StockBox> stocks = new ArrayList<>();
+    private List<Data> myStocks = new ArrayList<>();
 
     private GraphicsText moneyAvailable;
     private GraphicsText name;
@@ -27,7 +29,7 @@ public class MarketIndexWidget implements StockWidget {
     private Button advanceTime;
     private boolean buttonActive = false;
     private double cash = 10000;
-    private Data data;
+    private int quarter = 0;
 
     @Override
     public String toString() {
@@ -84,11 +86,38 @@ public class MarketIndexWidget implements StockWidget {
         buyButton = new Button("Buy Stock");
         buttonGroup.add(buyButton);
 
+        buyButton.onClick(() -> {
+            for (StockBox box : stocks) {
+                if (box.isActive() && (cash > box.getStock().getPrice().get(quarter))) {
+                    updateBuyStockInfo(box);
+                }
+            }
+        });
+
         sellButton = new Button("Sell Stock");
         buttonGroup.add(sellButton);
+        sellButton.onClick(() -> {
+            for (StockBox box : stocks) {
+                if (box.isActive() && (cash > box.getStock().getPrice().get(quarter))) {
+                    updateSellStockInfo(box);
+                }
+            }
+        });
 
         advanceTime = new Button("Next Quarter");
         buttonGroup.add(advanceTime);
+        advanceTime.onClick(() -> {
+            if (quarter < 20) {
+                quarter++;
+            }
+            for (StockBox box1 : stocks) {
+                if (box1.isActive()) {
+                    updateQuarterStockInfo(box1);
+                }
+            }
+        });
+
+
 
         createStockBoxes();
         group.add(getStockGroup());
@@ -119,17 +148,6 @@ public class MarketIndexWidget implements StockWidget {
                 length = 0;
                 y = y + spacing + stockBox.getHeight();
             }
-            buyButton.onClick(() -> {
-                if (checkBuyPossible()) {
-
-                    cash -= Data.STOCKS.get(0).getPrice().get(0);
-                    update();
-//                System.out.println(cash);
-                }
-                else {
-                    System.out.println("Cannot buy any more");
-                }
-            });
             stockGroup.add(stockBox);
             stocks.add(stockBox);
         }
@@ -137,10 +155,6 @@ public class MarketIndexWidget implements StockWidget {
 
     public GraphicsObject getButtons() {
         return buttonGroup;
-    }
-
-    private boolean checkBuyPossible() {
-            return cash > (Data.ADBE.getPrice().get(0));
     }
 
     public void setButtonActive(boolean buttonActive) {
@@ -171,10 +185,6 @@ public class MarketIndexWidget implements StockWidget {
         updateLayout();
     }
 
-
-
-
-
     private void updateLayout() {
         name.setCenter(size * 0.4, size * 0.15);
         moneyAvailable.setCenter(size * 0.1, size * 0.05);
@@ -195,28 +205,51 @@ public class MarketIndexWidget implements StockWidget {
         }
         return null;
     }
+
     private void selectStock(StockBox box) {
         for (StockBox box1 : stocks) {
             box1.setActive(false);
         }
         box.setActive(true);
+        updateQuarterStockInfo(box);
+        updateLayout();
+    }
+
+    private void updateQuarterStockInfo(StockBox box) {
         Data stock = box.getStock();
         name.setText(stock.getName());
-        currPrice.setText("Stock Price " + stock.getPrice());
-        peRatio.setText("P/E Ratio " + stock.getPe());
-        eps.setText("EPS " + stock.getEps());
-        divYield.setText("Div Yield " + stock.getDivYield());
-        marketCap.setText("Market Cap (In Bln) " + stock.getMarketCapInBillions());
-//        updateLayout();
+        currPrice.setText("Stock Price " + stock.getPrice().get(quarter));
+        peRatio.setText("P/E Ratio " + stock.getPe().get(quarter/4));
+        eps.setText("EPS " + stock.getEps().get(quarter/4));
+        divYield.setText("Div Yield " + stock.getDivYield().get(quarter/4));
+        marketCap.setText("Market Cap (In Bln) " + stock.getMarketCapInBillions().get(quarter/4));
     }
+
+    private void updateBuyStockInfo(StockBox box) {
+        Data stock = box.getStock();
+        moneyAvailable.setText("Cash : " + (cash-stock.getPrice().get(quarter)));
+        cash -= stock.getPrice().get(quarter);
+    }
+
+    private void updateSellStockInfo(StockBox box) {
+        Data stock = box.getStock();
+        moneyAvailable.setText("Cash : " + (cash+stock.getPrice().get(quarter)));
+        cash += stock.getPrice().get(quarter);
+    }
+
+//    public void buyStock()  {
+//        buyButton.onClick(()->
+//                );
+//    }
+
 
     //Please Do not touch this method or at least tell me that you are going to do that
 
 
-    public void updateCash (double cash, Data data){
-        this.data = data;
+//    public void updateCash (double cash, Data data){
+//        this.data = data;
 //          if(buyButton.onClick() && data.getAdbePrice()< cash)
-    }
+//    }
 
     //    private StockBox getBoxAt(Point location) {
 //        GraphicsObject obj = group.getElementAt(location);
@@ -225,8 +258,9 @@ public class MarketIndexWidget implements StockWidget {
 //        }
 //        return null;
 //    }
-    private int i = 0;
-    public void infoUpdate() {
+//    private int i = 0;
+//    public void infoUpdate(Data data) {
+//        this.data = data;
 //        int i = 0;
 //        i++;
 //
@@ -245,8 +279,8 @@ public class MarketIndexWidget implements StockWidget {
 //            data.gapPrice.get(i);
 //            data.fordPrice.get(i);
 //            data.wfcPrice.get(i);
-
-        int shortListi = i / 5;
+//
+//        int shortListi = i / 5;
 //            if (i % 4 == 1){
 //                data.adbeDivYield.get(shortListi);
 //                data.adbePe.get(shortListi);
@@ -258,7 +292,7 @@ public class MarketIndexWidget implements StockWidget {
 //                data.axpEps.get(shortListi);
 //                data.axpMarketCapInBillions.get(shortListi);
 
-//                data.unhDivYield.get(shortListi);
+    //                data.unhDivYield.get(shortListi);
 //                data.unhPe.get(shortListi);
 //                data.unhEps.get(shortListi);
 //                data.unhMarketCapInBillions.get(shortListi);
@@ -283,8 +317,11 @@ public class MarketIndexWidget implements StockWidget {
 //                data.fordEPS.get(shortListi);
 //                data.fordMarketCapInBillions.get(shortListi);
 //            }
+//    }
+    public Double decimalPoint(Double number)  {
+        DecimalFormat df = new DecimalFormat("#.##");
+        return (Double.parseDouble(df.format(number)));
     }
-
 
     @Override
     public void onHover(Point position) {

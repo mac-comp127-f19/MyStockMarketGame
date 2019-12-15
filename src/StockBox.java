@@ -7,6 +7,7 @@ public class StockBox extends Rectangle {
     private double centerX;
     private double centerY;
     private Data stock;
+    private boolean isActive;
 
     /**
      * a constructor that creates a StockBox
@@ -22,6 +23,7 @@ public class StockBox extends Rectangle {
         this.centerX = centerX;
         this.centerY = centerY;
         this.stock = stock;
+        this.isActive = false;
         setStrokeWidth(Math.rint((width + height) / 40 + 1) * 0.5);
         setActive(false);
     }
@@ -30,6 +32,11 @@ public class StockBox extends Rectangle {
         setFillColor(active
                 ? new Color(0x3ba634)
                 : new Color(0xD9D9D9));
+        this.isActive = active;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     public Data getStock() {
