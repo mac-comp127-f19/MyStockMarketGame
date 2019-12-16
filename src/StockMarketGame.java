@@ -13,6 +13,11 @@ public class StockMarketGame {
     private StockWidget displayedLargeWidget;
     private Rectangle selectionHighlight;
 
+    /**
+     * Opens a window and displays the MyStockMarketGame UI
+     * @param largeWidgetSize The height and width of the large widget. The window size is derived
+     *                        from this value combined with the number of widget choices.
+     */
     public StockMarketGame(double largeWidgetSize) {
         this.largeWidgetSize = largeWidgetSize;
         // !!!2 is the number of largeWidgets!!!
@@ -70,17 +75,24 @@ public class StockMarketGame {
 //                });
 //    }
 
+    /**
+     * A method that creates widgets
+     * @param size the size of a widget to be created
+     * @return
+     */
     private List<StockWidget> createWidgets(double size) {
         return List.of(
                 new MarketIndexWidget(size, false),
                 new MyPortfolio(size));
     }
 
-    /**
-     * @param index; Checks if selected widget is within the bounds of canvas and checks the displayed widget for null.
-     *               If passed, adds the displayed widget to canvas.
-     */
 
+    /**
+     * Checks if selected widget is within the bounds of canvas and checks the displayed widget for null.
+     *                 If passed, adds the displayed widget to canvas.
+     * @param index a variable that is used for comparison with a widget's size in order to tet whether
+     *              a widget is out of bounds
+     */
     private void selectWidgetAtIndex(int index) {
         if (index >= largeWidgets.size() || index < 0) {
             throw new IndexOutOfBoundsException(index);

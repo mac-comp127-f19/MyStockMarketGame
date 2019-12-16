@@ -48,6 +48,13 @@ public class MarketIndexWidget implements StockWidget {
                 '}';
     }
 
+    /**
+     * This constructor for MarketIndex class, it creates new graphics group objects as well as graphics text objects
+     * to depict the information about each stock
+     * this constructor also makes new buttons
+     * @param size a double size variable for buttons
+     * @param buttonActive a variable that checks if the buttonGroup is active
+     */
     public MarketIndexWidget(double size, boolean buttonActive) {
         this.size = size;
 
@@ -128,10 +135,20 @@ public class MarketIndexWidget implements StockWidget {
 //        nextQuarterButton.onClick(this::infoUpdate);
     }
 
+    /**
+     * A method that returns the stockGroup that contains information about each stock
+     * @return
+     */
     public GraphicsGroup getStockGroup() {
         return stockGroup;
     }
 
+    /**
+     * A method to create boxes of a certain size
+     * This method used to create boxes and assign each a box from the the Graphicsgroup a stock which is also
+     * an instance of the data class
+     *
+     */
     private void createStockBoxes() {
         double margin = size * 0.05;
         double spacing = size * 0.01;
@@ -153,10 +170,18 @@ public class MarketIndexWidget implements StockWidget {
         }
     }
 
+    /**
+     * A method that returns existing buttons as a buttonGroup
+     * @return
+     */
     public GraphicsObject getButtons() {
         return buttonGroup;
     }
 
+    /**
+     * A method that modifies the position of the buttons
+     * @param buttonActive a boolean that checks if the buttonGroup is active
+     */
     public void setButtonActive(boolean buttonActive) {
         if (this.buttonActive == buttonActive) return;
         this.buttonActive = buttonActive;
@@ -167,12 +192,15 @@ public class MarketIndexWidget implements StockWidget {
         }
     }
 
+
     @Override
     public GraphicsObject getGraphics() {
         return group;
     }
 
-
+    /**
+     * A method that inputs the text for the Graphicstext objects that represent the stocks
+     */
     @Override
     public void update() {
         name.setText("");
@@ -185,6 +213,9 @@ public class MarketIndexWidget implements StockWidget {
         updateLayout();
     }
 
+    /**
+     * A method that positions the Graphicstext objects on the canvas
+     */
     private void updateLayout() {
         name.setCenter(size * 0.4, size * 0.15);
         moneyAvailable.setCenter(size * 0.1, size * 0.05);
@@ -198,6 +229,11 @@ public class MarketIndexWidget implements StockWidget {
         advanceTime.setCenter(size * 0.65, size * 0.05);
     }
 
+    /**
+     * Given a position in the widget, this returns the StockBox at that position if one exists
+     * @param location ra variable that represents  the position of a box
+     * @return
+     */
     private StockBox getBoxAt(Point location) {
         GraphicsObject obj = group.getElementAt(location);
         if (obj instanceof StockBox) {
@@ -206,6 +242,10 @@ public class MarketIndexWidget implements StockWidget {
         return null;
     }
 
+    /**
+     * A method that implements the assignment of the stock to the stockbox
+     * @param box
+     */
     private void selectStock(StockBox box) {
         for (StockBox box1 : stocks) {
             box1.setActive(false);
@@ -215,6 +255,11 @@ public class MarketIndexWidget implements StockWidget {
         updateLayout();
     }
 
+    /**
+     * A method that is responsible for updating the information about the stocks;
+     * it is used when the button next quarter is clicked
+     * @param box a Graphics object, ans instance of the Stockbox class
+     */
     private void updateQuarterStockInfo(StockBox box) {
         Data stock = box.getStock();
         name.setText(stock.getName());
@@ -225,104 +270,41 @@ public class MarketIndexWidget implements StockWidget {
         marketCap.setText("Market Cap (In Bln) " + stock.getMarketCapInBillions().get(quarter/4));
     }
 
+    /**
+     * A method that updates the cash value when a stock is bought
+     * @param box a Graphics object, ans instance of the Stockbox class
+     */
     private void updateBuyStockInfo(StockBox box) {
         Data stock = box.getStock();
         moneyAvailable.setText("Cash : " + (cash-stock.getPrice().get(quarter)));
         cash -= stock.getPrice().get(quarter);
     }
 
+    /**
+     * A method that updates the cash value when a stock is bought
+     * @param box a Graphics object, ans instance of the Stockbox class
+     */
     private void updateSellStockInfo(StockBox box) {
         Data stock = box.getStock();
         moneyAvailable.setText("Cash : " + (cash+stock.getPrice().get(quarter)));
         cash += stock.getPrice().get(quarter);
     }
 
-//    public void buyStock()  {
-//        buyButton.onClick(()->
-//                );
-//    }
-
-
-    //Please Do not touch this method or at least tell me that you are going to do that
-
-
-//    public void updateCash (double cash, Data data){
-//        this.data = data;
-//          if(buyButton.onClick() && data.getAdbePrice()< cash)
-//    }
-
-    //    private StockBox getBoxAt(Point location) {
-//        GraphicsObject obj = group.getElementAt(location);
-//        if (obj instanceof StockBox) {
-//            return (StockBox) obj;
-//        }
-//        return null;
-//    }
-//    private int i = 0;
-//    public void infoUpdate(Data data) {
-//        this.data = data;
-//        int i = 0;
-//        i++;
-//
-//        System.out.println("I'm clicked!");
-//            for (Data stock : Data.STOCKS) {
-//                stock.getPrice().get(i);
-//            }
-//            List<Double> prices = Data.STOCKS.stream().map(stock -> stock.getPrice().get(i)).collect(Collectors.toList());
-//            System.out.println(prices);
-//            Data.ADBE.getPrice();
-//            data.adbePrice.get(i);
-//            data.axpPrice.get(i);
-//            data.unhPrice.get(i);
-//            data.aflacPrice.get(i);
-//            data.allstatePrice.get(i);
-//            data.gapPrice.get(i);
-//            data.fordPrice.get(i);
-//            data.wfcPrice.get(i);
-//
-//        int shortListi = i / 5;
-//            if (i % 4 == 1){
-//                data.adbeDivYield.get(shortListi);
-//                data.adbePe.get(shortListi);
-//                data.adbeEps.get(shortListi);
-//                data.adbeMarketCapInBillions.get(shortListi);
-
-//                data.axpDivYield.get(shortListi);
-//                data.axpPe.get(shortListi);
-//                data.axpEps.get(shortListi);
-//                data.axpMarketCapInBillions.get(shortListi);
-
-    //                data.unhDivYield.get(shortListi);
-//                data.unhPe.get(shortListi);
-//                data.unhEps.get(shortListi);
-//                data.unhMarketCapInBillions.get(shortListi);
-//
-//                data.aflacDivYield.get(shortListi);
-//                data.aflacPe.get(shortListi);
-//                data.aflacEPS.get(shortListi);
-//                data.aflacMarketCapInBillions.get(shortListi);
-//
-//                data.allstateDivYield.get(shortListi);
-//                data.allstatePe.get(shortListi);
-//                data.allstateEPS.get(shortListi);
-//                data.allstateMarketCapInBillions.get(shortListi);
-//
-//                data.gapDivYield.get(shortListi);
-//                data.gapPe.get(shortListi);
-//                data.gapEPS.get(shortListi);
-//                data.gapMarketCapInBillions.get(shortListi);
-//
-//                data.fordDivYield.get(shortListi);
-//                data.fordPe.get(shortListi);
-//                data.fordEPS.get(shortListi);
-//                data.fordMarketCapInBillions.get(shortListi);
-//            }
-//    }
+    /**
+     * A method that dets the number of decimals to two
+     * @param number
+     * @return
+     */
     public Double decimalPoint(Double number)  {
         DecimalFormat df = new DecimalFormat("#.##");
         return (Double.parseDouble(df.format(number)));
     }
 
+    /**
+     * Updates the currently displayed forecast information as the mouse moves over the widget.
+     *  If there is not a StockBox at that position, the display does not change.
+     * @param position A location in the widget’s local coordinates.
+     */
     @Override
     public void onHover(Point position) {
         StockBox selectBox = getBoxAt(position);
@@ -330,6 +312,10 @@ public class MarketIndexWidget implements StockWidget {
         selectStock(selectBox);
     }
 
+    /**
+     * A method that sets the button active
+     * @param b
+     */
     @Override
     public void setActive(boolean b) {
         setButtonActive(b);

@@ -5,7 +5,16 @@ public class Data {
     private String name;
     private final List<Double> price, eps, marketCapInBillions, pe, divYield;
 
-
+    /**
+     * A constructor for data class that organizes all the information about each stock in a separate objects
+     *  it creates a Data class instances that take in the following parameters
+     * @param name  name of a stock
+     * @param price price of the stock
+     * @param eps Earning per share value of a stock
+     * @param marketCapInBillions Market Capitalization of a stock
+     * @param pe Price-earnings ratio of a stock
+     * @param divYield Dividend yield of a stock
+     */
     public Data(String name, List<Double> price, List<Double> eps, List<Double> marketCapInBillions,
                 List<Double> pe, List<Double> divYield) {
         this.price = price;
