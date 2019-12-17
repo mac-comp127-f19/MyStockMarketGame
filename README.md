@@ -13,3 +13,5 @@
  for losers! The game ends after 19 financial quarters, in the fall of 2013. At the end of the game, 
  sell all your stocks and see if you have made a profit! Just keep in mind that you only have $1000 to 
  start with - use it wisely!
+
+![The wolf of Wall Street](src/wolf.jpg)
