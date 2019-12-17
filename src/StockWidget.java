@@ -1,3 +1,4 @@
+import comp127graphics.CanvasWindow;
 import comp127graphics.GraphicsObject;
 import comp127graphics.Point;
 

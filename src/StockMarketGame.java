@@ -6,7 +6,6 @@ import java.util.List;
 
 public class StockMarketGame {
     private CanvasWindow canvas;
-    private Data data;
 
     private double miniWidgetSize, largeWidgetSize;
     private List<StockWidget> miniWidgets, largeWidgets;
@@ -16,14 +15,15 @@ public class StockMarketGame {
     /**
      * Opens a window and displays the MyStockMarketGame UI
      * @param largeWidgetSize The height and width of the large widget. The window size is derived
-     *                        from this value combined with the number of widget choices.
+     *
+     *                   from this value combined with the number of widget choices.
      */
     public StockMarketGame(double largeWidgetSize) {
         this.largeWidgetSize = largeWidgetSize;
         // !!!2 is the number of largeWidgets!!!
-        miniWidgetSize = largeWidgetSize / 2;  // so they stack along one edge
+        miniWidgetSize = largeWidgetSize / 2;
         canvas = new CanvasWindow(
-                "Stock Market Game",
+                "The Wolf of Wall Street",
                 (int) Math.round(largeWidgetSize + miniWidgetSize),
                 (int) Math.round(largeWidgetSize));
         canvas.setBackground(new Color(255, 253, 155));
@@ -62,18 +62,6 @@ public class StockMarketGame {
         });
     }
 
-//    private void updateWeather() {
-//        new OpenWeatherProvider(FORECAST_LAT, FORECAST_LON)
-//                .fetchWeather((weatherData) -> {
-//                    for (WeatherWidget widget : miniWidgets) {
-//                        widget.update(weatherData);
-//                    }
-//                    for (WeatherWidget widget : largeWidgets) {
-//                        widget.update(weatherData);
-//                    }
-//                    canvas.draw();
-//                });
-//    }
 
     /**
      * A method that creates widgets
@@ -82,8 +70,8 @@ public class StockMarketGame {
      */
     private List<StockWidget> createWidgets(double size) {
         return List.of(
-                new MarketIndexWidget(size, false),
-                new MyPortfolio(size));
+                new MarketIndexWidget(size, false)
+                );
     }
 
 

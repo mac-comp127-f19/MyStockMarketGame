@@ -42,5 +42,14 @@ public class StockBox extends Rectangle {
     public Data getStock() {
         return stock;
     }
-}
 
+    @Override
+    public String toString() {
+        return "StockBox{" +
+                "centerX=" + centerX +
+                ", centerY=" + centerY +
+                ", stock=" + stock +
+                ", isActive=" + isActive +
+                '}';
+    }
+}
